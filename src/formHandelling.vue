@@ -5,16 +5,11 @@
   </pre
     >
   </div>
-  <form @submit.prevent="submitForm">
+  <form @submit="submitForm">
     <div class="flex">
       <label for="name">Name</label>
       <!-- v-modal is used to control input element -->
-      <!-- modifer trim is used to make code cleaner in the databse by removing uncessary space -->
-      <input type="text" id="name" v-model.trim.lazy="formValues.name" />
-    </div>
-    <div>
-      <label for="age">Age</label>
-      <input type="number" @keyup.esc="submitForm" id="age" v-model.number="formValues.age" />
+      <input type="text" id="name" v-model="formValues.name" />
     </div>
     <div class="flex">
       <label for="profile">Profile Summary</label>
@@ -37,7 +32,6 @@
         <option value="singapore">Singapore</option>
       </select>
     </div>
-
     <div>
       <input id="check" v-model="formValues.remoteWork" true-value="yes" false-value="no" />
       <label for="check">Are you open to work?</label>
@@ -60,9 +54,9 @@
       <input type="radio" id="6-10" value="6-10" v-model="formValues.yearsOfExprience" />
       <label>6-10</label>
     </div>
-    <!-- <div>
+    <div>
       <button>Submit</button>
-    </div> -->
+    </div>
   </form>
 </template>
 
@@ -78,8 +72,7 @@ export default {
         jobApplication: [],
         remoteWork: 'no',
         skillSet: [],
-        yearsOfExprience: '',
-        age: null
+        yearsOfExprience: ''
       }
     }
   },
