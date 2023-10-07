@@ -1,11 +1,38 @@
 <template>
-  <h2>{{ name }}</h2>
   <div>
-    <button @click="changeName(), increment(1)">Change name</button>
+    <pre>
+    {{ JSON.stringify(formValues, null, 2) }}
+  </pre
+    >
   </div>
-  <h2>{{ count }}</h2>
-  <button v-on:click="increment(5, $event)">Increase 5</button>
-  <button v-on:click="decrement(1)">Decrease 1</button>
+  <form>
+    <div class="flex">
+      <label for="name">Name</label>
+      <!-- v-modal is used to control input element -->
+      <input type="text" id="name" v-model="formValues.name" />
+    </div>
+    <div class="flex">
+      <label for="profile">Profile Summary</label>
+      <textarea id="profile" v-model="formValues.profileSummary"></textarea>>
+    </div>
+    <div class="flex">
+      <label for="country">Country</label>
+      <select id="country" v-model="formValues.country">
+        <option value="">Select a country</option>
+        <option value="india">India</option>
+        <option value="vietnam">Vietnam</option>
+        <option value="singapore">Singapore</option>
+      </select>
+    </div>
+    <div class="flex">
+      <label for="country">Job Location</label>
+      <select id="country" multiple v-model="formValues.jobApplication">
+        <option value="india">India</option>
+        <option value="vietnam">Vietnam</option>
+        <option value="singapore">Singapore</option>
+      </select>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -13,8 +40,13 @@ export default {
   name: 'App',
   data() {
     return {
-      name: 'yash',
-      count: 0
+      formValues: {
+        name: '',
+        profileSummary: '',
+        country: '',
+        jobApplication: '',
+        remoteWork: ''
+      }
     }
   },
   methods: {
@@ -31,3 +63,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+</style>
