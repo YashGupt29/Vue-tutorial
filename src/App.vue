@@ -1,64 +1,39 @@
 <template>
-  <h2>Fullname-{{ firstName }} {{ secondName }}</h2>
-  <!-- <h2>Computed Fullname-{{ fullname }}</h2> -->
-  <button @click="changefullName">ChangeFull Name</button>
-  <h2>
-    Total is
-    {{ total }}
-  </h2>
-  <button @click="items.push({ id: 4, title: 'mac', price: 400 })">Add items</button>
-  <h2>Total from Method is -{{ getTotal() }}</h2>
-  <input type="text" v-model="country" />
-  <template v-for="item in items" :key="item.id">
-    <div v-if="item.price > 100">{{ item.title }}</div>
-  </template>
-  <h2 v-for="item in expensive" :key="item.id">{{ item.price }} {{ item.title }}</h2>
+  <div class="flex">
+    <h2>Volume Tracker(0-20)</h2>
+    <h3>Current Volume-{{ volume }}</h3>
+    <div>
+      <button @click="volume += 2">Increase</button>
+      <button @click="volume -= 2">Decrease</button>
+    </div>
+  </div>
 </template>
-
 <script>
+// use watcher when you have to check any valueif you are ready to perform action
+// use of watchers
+// when you have to call any api respone to change in data
+// when you have to do any transitions
 export default {
   name: 'App',
   data() {
     return {
-      firstName: 'Yash',
-      secondName: 'Gupta',
-      items: [
-        { id: '1', title: 'TV', price: 100 },
-        { id: '2', title: 'Mobile', price: 200 },
-        { id: '3', title: 'Laptop', price: 300 }
-      ],
-      country: ''
+      volume: 0
     }
   },
-  // difference between computed and method property is that computed property is cached and not recalculated again but method is recalculated
-  // hence improve the performance
-  methods: {
-    getTotal() {
-      console.log('total in method')
-      return this.items.reduce((total, curr) => total + curr.price, 0)
-    },
-    changefullName() {
-      return (this.fullname = 'Angela White')
-    }
-  },
-  computed: {
-    fullname: {
-      get() {
-        return `${this.firstName} ${this.secondName}`
-      },
-      set(value) {
-        const name = value.split(',')
-        this.firstName = name[0]
-        this.secondName = name[1]
+  methods: {},
+  computed: {},
+  watch: {
+    volume(newValue, oldValue) {
+      if (newValue > oldValue && newValue === 16) {
+        alert('You exceeded 16')
       }
-    },
-    total() {
-      console.log('total in computed')
-      return this.items.reduce((total, curr) => total + curr.price, 0)
-    },
-    expensive() {
-      return this.items.filter((item) => item.price > 100)
     }
   }
 }
 </script>
+<style scoped>
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+</style>
