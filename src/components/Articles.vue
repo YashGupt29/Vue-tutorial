@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Article Component</h2>
-    <h2>{{ title }}</h2>
+    <h2 v-bind="$attrs">{{ title }}</h2>
     <h2>Likes-{{ Likes }}</h2>
     <h2>isPublished-{{ isPublished ? 'yes' : 'no' }}</h2>
   </div>
@@ -17,7 +17,8 @@ export default {
     },
     Likes: Number,
     isPublished: Boolean
-  }
+  },
+  inheritAttrs: false //this will disable non-prop elemnts to apply on root elements
 }
 </script>
 
