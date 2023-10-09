@@ -7,7 +7,7 @@
   <Articles title="Artcile Title" :Likes="10" :isPublished="true" />
 </template>
 <script>
-import Articles from './components/Articles.vue'
+import Articles from '../components/Articles.vue'
 export default {
   name: 'App',
   components: {
